@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+  <title>Parking Management System</title>
+  <style>
+    body {
+      background-image: url("https://storage.googleapis.com/bck-bucket-parking-1/rules-and-regs-newfinal.jpeg");
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+    .form-container {
+      margin: 50px auto;
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .image-upload {
+      margin-bottom: 20px;
+    }
+    .image-preview {
+      max-width: 100%;
+      max-height: 200px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Parking Management System</h1>
+    <form id = "add-data">
+      <label for="image">Image:</label>
+      <div class="image-upload">
+        <input type="file" id="image" name="image" accept="image/*">
+      </div>
+      <img class="image-preview" src="" alt="Preview">
+      
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required>
+
+      <label for="empty-spaces">Empty spaces:</label>
+      <input type="number" id="empty-spaces" name="emptySpaces" min="0">
+      
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+
+  
+  <script>
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.querySelector('.image-preview');
+    
+    imageInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.addEventListener('load', function() {
+          imagePreview.setAttribute('src', this.result);
+        });
+        reader.readAsDataURL(file);
+      } else {
+        imagePreview.setAttribute('src', '');
+      }
+    });
+    
+    function reloadPage() {
+      setTimeout(() => location.reload(), 200);
+    }
+  </script>
+  <script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyAeZbYto7qg_0K7yRH_a2Br6D_QUvjDZFE",
+    authDomain: "my-project-2-379220.firebaseapp.com",
+    projectId: "my-project-2-379220",
+    storageBucket: "my-project-2-379220.appspot.com",
+    messagingSenderId: "1068427082703",
+    appId: "1:1068427082703:web:b6f98b6c42b2eccda570ba",
+    measurementId: "G-CX4TP7T81J"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    </script>
+    
+    <script src="app1.js"> </script>
+</body>
+</html>
