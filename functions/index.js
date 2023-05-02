@@ -4,7 +4,7 @@ const sgMail = require("@sendgrid/mail");
 admin.initializeApp();
 
 sgMail.setApiKey(
-    "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"
+    "enter-api-key-here"
 );
 
 exports.sendEmailNotification = functions.firestore
